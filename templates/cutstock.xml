@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>CutStock</Name>
+  <Repository>ghcr.io/orohde/cutstock:latest</Repository>
+  <Registry>https://github.com/orohde/CutStock/pkgs/container/cutstock</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/orohde/CutStock/issues</Support>
+  <Project>https://cutstock.app</Project>
+  <Overview>CutStock plans how to cut bars and panels with as little waste as possible. It computes 1D and 2D cutting layouts with saw kerf, grain direction and defects, keeps track of your stock and offcuts with piece codes and storage locations, and exports print-ready cut plans and labels as PDF. A touch-friendly workshop mode guides you at the saw, and every function is available over a REST API. Available in German, English, French and Italian.&#xD;
+&#xD;
+First start: open the web UI, no setup needed. The web interface has no login, so keep it inside your network or behind a reverse proxy with authentication; the API can be protected with a key in the settings.</Overview>
+  <Category>Productivity: Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:8000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/orohde/unraid-templates/main/templates/cutstock.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/orohde/unraid-templates/main/icons/cutstock.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <TailscaleEnabled>false</TailscaleEnabled>
+  <TailscaleHostname>cutstock</TailscaleHostname>
+  <TailscaleIsExitNode>false</TailscaleIsExitNode>
+  <TailscaleSSH>false</TailscaleSSH>
+  <TailscaleUserspaceNetworking>true</TailscaleUserspaceNetworking>
+  <TailscaleLANAccess>false</TailscaleLANAccess>
+  <TailscaleServe>serve</TailscaleServe>
+  <TailscaleServePort>8000</TailscaleServePort>
+  <TailscaleWebUI>https://[hostname][magicdns]/</TailscaleWebUI>
+  <Config Name="WebUI port" Target="8000" Default="8420" Mode="tcp" Description="Host port for the web interface. The container listens on 8000." Type="Port" Display="always" Required="true" Mask="false">8420</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/cutstock" Mode="rw" Description="Database with projects, materials and settings." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/cutstock</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Time zone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+</Container>

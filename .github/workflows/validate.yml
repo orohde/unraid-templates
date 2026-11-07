@@ -1,0 +1,17 @@
+name: Validate templates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate ca_profile.xml and templates
+        run: python3 scripts/validate-template.py --check-urls ca_profile.xml templates/*.xml

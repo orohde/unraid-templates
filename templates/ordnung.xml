@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Ordnung</Name>
+  <Repository>ghcr.io/orohde/ordnung:latest</Repository>
+  <Registry>https://github.com/orohde/Ordnung/pkgs/container/ordnung</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/orohde/Ordnung/issues</Support>
+  <Project>https://github.com/orohde/Ordnung</Project>
+  <Overview>Ordnung! is a document archive for households and small offices that works on your existing folders. Folders stay the truth: it indexes your PDFs and images with full-text search and OCR, files new scans from an inbox into the right folder, learns its rules from the structure you already have, and lets you edit, sign and bundle PDFs in the browser. Accounts and areas control who sees which top-level folder. Available in German, English, French and Italian.&#xD;
+&#xD;
+First start: set an administrator password below, point "Archive" at the share that holds your documents and open the web UI. Mount scanner or e-mail folders under /eingang and add them as inboxes in the settings.&#xD;
+&#xD;
+The app runs as nobody:users (PUID 99, PGID 100), the usual owner of Unraid shares. Empty folders created for the template are handed over to that user; existing archive folders are left as they are, so nobody:users needs write access there.</Overview>
+  <Category>Productivity: Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:8000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/orohde/unraid-templates/main/templates/ordnung.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/orohde/unraid-templates/main/icons/ordnung.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <TailscaleEnabled>false</TailscaleEnabled>
+  <TailscaleHostname>ordnung</TailscaleHostname>
+  <TailscaleIsExitNode>false</TailscaleIsExitNode>
+  <TailscaleSSH>false</TailscaleSSH>
+  <TailscaleUserspaceNetworking>true</TailscaleUserspaceNetworking>
+  <TailscaleLANAccess>false</TailscaleLANAccess>
+  <TailscaleServe>serve</TailscaleServe>
+  <TailscaleServePort>8000</TailscaleServePort>
+  <TailscaleWebUI>https://[hostname][magicdns]/</TailscaleWebUI>
+  <Config Name="WebUI port" Target="8000" Default="8440" Mode="tcp" Description="Host port for the web interface. The container listens on 8000." Type="Port" Display="always" Required="true" Mask="false">8440</Config>
+  <Config Name="Archive" Target="/archiv" Default="/mnt/user/Dokumente" Mode="rw" Description="Your document folders. Each top-level folder becomes an area. Ordnung! files new documents here; existing files are only moved or renamed when you do it in the app." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Dokumente</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/ordnung" Mode="rw" Description="Search index, settings, accounts and trash. Rebuildable from the archive except accounts and settings, so include it in your backup." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/ordnung</Config>
+  <Config Name="Inbox (scanner)" Target="/eingang/scanner" Default="" Mode="rw" Description="Optional: a folder your scanner writes to. Add it as an inbox in Settings; filed documents are moved out of it." Type="Path" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Administrator name" Target="ORDNUNG_ADMIN_USER" Default="admin" Mode="" Description="First administrator account. Only used while no account exists yet." Type="Variable" Display="always" Required="true" Mask="false">admin</Config>
+  <Config Name="Administrator password" Target="ORDNUNG_ADMIN_PASSWORD" Default="" Mode="" Description="Password for the first administrator. Required on first start; change it later in the app." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Time zone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the app runs as (99 = nobody)." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the app runs as (100 = users)." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="0002" Mode="" Description="umask for new files and folders (0002 = group users may write)." Type="Variable" Display="advanced" Required="false" Mask="false">0002</Config>
+  <Config Name="API token" Target="ORDNUNG_API_TOKEN" Default="" Mode="" Description="Optional token for scripts (Authorization: Bearer ...). Leave empty to disable." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="OCR" Target="ORDNUNG_OCR" Default="1" Mode="" Description="Text recognition for scanned pages (1 = on, 0 = off)." Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+  <Config Name="OCR languages" Target="ORDNUNG_OCR_LANG" Default="deu+eng" Mode="" Description="Tesseract languages. The image contains deu and eng." Type="Variable" Display="advanced" Required="false" Mask="false">deu+eng</Config>
+  <Config Name="Rescan minutes" Target="ORDNUNG_RESCAN_MINUTES" Default="10" Mode="" Description="Interval of the full rescan that picks up changes made outside Ordnung!." Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
+  <Config Name="Starter template" Target="ORDNUNG_STARTER" Default="1" Mode="" Description="On first start, offer a household folder template and starter rules (1 = yes, 0 = no)." Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+</Container>
