@@ -8,7 +8,7 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/orohde/Ordnung/issues</Support>
-  <Project>https://github.com/orohde/Ordnung</Project>
+  <Project>https://worldgate.de/en/ordnung-en/</Project>
   <Overview>Ordnung! is a document archive for households and small offices that works on your existing folders. Folders stay the truth: it indexes your PDFs and images with full-text search and OCR, files new scans from an inbox into the right folder, learns its rules from the structure you already have, and lets you edit, sign and bundle PDFs in the browser. Accounts and areas control who sees which top-level folder. Available in German, English, French and Italian.&#xD;
 &#xD;
 First start: point "Archive" at the share that holds your documents and open the web UI; the first visit (from your home network) creates the administrator account. Mount scanner folders under /eingang and add them as inboxes in the settings. Everything else (text recognition, home network, API key, mail inbox, AI) is set in the app under Settings.&#xD;
