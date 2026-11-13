@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Augenblick</Name>
+  <Repository>ghcr.io/orohde/augenblick:latest</Repository>
+  <Registry>https://github.com/orohde/Augenblick/pkgs/container/augenblick</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/orohde/Augenblick/issues</Support>
+  <Project>https://worldgate.de/en/augenblick-en/</Project>
+  <Overview>Augenblick! is a photo library that works on your existing folders. Folders stay the truth: there is no database of its own beyond a rebuildable index, and everything you change – date, place, description, keywords, albums, names of people – is written into the photo file itself. Timeline, map, folder tree, face recognition (local, no cloud), duplicates, memories, lossless rotating, picture editing that keeps the original, upload from the phone over WebDAV into an inbox, optional AI proposals for descriptions and keywords. Accounts and areas control who sees which top-level folder. Available in German, English, French and Italian.&#xD;
+&#xD;
+First start: point "Photos" at the share that holds your pictures and open the web UI; the first visit (from your home network) creates the administrator account. Each folder directly below "Photos" becomes an area. Everything else (accounts, areas, face recognition, phone upload, AI, language) is set in the app.&#xD;
+&#xD;
+Augenblick! only reads until you set "Read-only" to false. Make a backup of your photos before you let any program write into them – this one included. The app runs as nobody:users (PUID 99, PGID 100), the usual owner of Unraid shares; the photo folders are never re-owned, so nobody:users needs write access there.</Overview>
+  <Category>MediaApp:Photos Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:8000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/orohde/unraid-templates/main/templates/augenblick.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/orohde/unraid-templates/main/icons/augenblick.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <TailscaleEnabled>false</TailscaleEnabled>
+  <TailscaleHostname>augenblick</TailscaleHostname>
+  <TailscaleIsExitNode>false</TailscaleIsExitNode>
+  <TailscaleSSH>false</TailscaleSSH>
+  <TailscaleUserspaceNetworking>true</TailscaleUserspaceNetworking>
+  <TailscaleLANAccess>false</TailscaleLANAccess>
+  <TailscaleServe>serve</TailscaleServe>
+  <TailscaleServePort>8000</TailscaleServePort>
+  <TailscaleWebUI>https://[hostname][magicdns]/</TailscaleWebUI>
+  <Config Name="WebUI port" Target="8000" Default="8450" Mode="tcp" Description="Host port for the web interface. The container listens on 8000." Type="Port" Display="always" Required="true" Mask="false">8450</Config>
+  <Config Name="Photos" Target="/fotos" Default="/mnt/user/Fotos" Mode="rw" Description="Your photo folders. Each folder directly below becomes an area (for example Family, Screenshots, Inbox). Files are only changed, moved or deleted when writing is allowed and you do it in the app." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/Fotos</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/augenblick" Mode="rw" Description="Index, previews, accounts, settings, journal of changes. The index and previews can be rebuilt from the photos; accounts, settings and the journal cannot, so include it in your backup." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/augenblick</Config>
+  <Config Name="Read-only" Target="AUGENBLICK_READONLY" Default="true" Mode="" Description="true = Augenblick! only reads (the default). Set to false to let it write into the photos: dates, places, keywords, names, rotating, sorting, the inbox upload, the trash. Back up your photos first." Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Time zone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the app runs as (99 = nobody)." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the app runs as (100 = users)." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="0002" Mode="" Description="umask for new files and folders (0002 = group users may write)." Type="Variable" Display="advanced" Required="false" Mask="false">0002</Config>
+  <Config Name="Rescan interval" Target="AUGENBLICK_RESCAN_MINUTES" Default="15" Mode="" Description="How often the folders are looked through for new or changed files, in minutes." Type="Variable" Display="advanced" Required="false" Mask="false">15</Config>
+</Container>

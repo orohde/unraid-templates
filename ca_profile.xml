@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommunityApplications>
-  <Profile>Self-hosted apps by Oliver Rohde (worldgate.de): Ordnung!, a document archive that keeps your own folder structure, and CutStock, a cut optimiser for bars and panels. Both images are built from the app repositories on GitHub; support happens in their GitHub issues.</Profile>
+  <Profile>Self-hosted apps by Oliver Rohde (worldgate.de): Ordnung!, a document archive that keeps your own folder structure, Augenblick!, a photo library on your own folders, and CutStock, a cut optimiser for bars and panels. All images are built from the app repositories on GitHub; support happens in their GitHub issues.</Profile>
   <Icon>https://raw.githubusercontent.com/orohde/unraid-templates/main/icons/ordnung.png</Icon>
   <WebPage>https://worldgate.de</WebPage>
 </CommunityApplications>
