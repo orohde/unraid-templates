@@ -6,11 +6,12 @@
 |---|---|---|---|
 | **[Ordnung!](https://github.com/orohde/Ordnung)** | Document archive on your existing folders: full-text search, OCR, inbox for scans, rules learnt from your folder structure, PDF editor, areas and accounts | `ghcr.io/orohde/ordnung` | [Issues](https://github.com/orohde/Ordnung/issues) |
 | **[Augenblick!](https://github.com/orohde/Augenblick)** | Photo library on your existing folders: timeline, map, local face recognition, duplicates, memories, lossless rotating, phone upload into an inbox; changes are written into the photo files | `ghcr.io/orohde/augenblick` | [Issues](https://github.com/orohde/Augenblick/issues) |
+| **[Wissen!](https://github.com/orohde/Wissen)** | Knowledge archive for documentation and manuals on your existing folders: Markdown pages and PDFs, full-text search with OCR, formatted editor, versions, Mermaid diagrams, REST API and MCP | `ghcr.io/orohde/wissen` | [Issues](https://github.com/orohde/Wissen/issues) |
 | **[CutStock](https://cutstock.app)** | Cut optimisation for bars and panels with stock management, cut plans and labels | `ghcr.io/orohde/cutstock` | [Issues](https://github.com/orohde/CutStock/issues) |
 
 ## Install
 
-Search for *Ordnung*, *Augenblick* or *CutStock* in the **Apps** tab of your Unraid server.
+Search for *Ordnung*, *Augenblick*, *Wissen* or *CutStock* in the **Apps** tab of your Unraid server.
 
 Before the templates are listed there, you can add this repository by hand:
 *Docker → Template repositories*, add `https://github.com/orohde/unraid-templates`, save,
@@ -40,6 +41,17 @@ Advanced settings: PUID/PGID/UMASK, API token, OCR on/off and languages, rescan 
 
 The app runs as `nobody:users` (PUID 99, PGID 100); `/data` is handed over to it, the photo folders are never re-owned.
 Advanced settings: PUID/PGID/UMASK, rescan interval.
+
+### Wissen!
+
+| Field | Container | Notes |
+|---|---|---|
+| WebUI port | 8000 | default host port 8460 |
+| Pages | `/wissen` | the share with your pages and PDFs, e.g. `/mnt/user/Wissen`; each top-level folder becomes an area |
+| Data | `/data` | index, settings, accounts, versions; back it up |
+
+The app runs as `nobody:users` (PUID 99, PGID 100); empty folders created on install are handed over to it, existing ones are left alone.
+Advanced settings: PUID/PGID/UMASK.
 
 ### CutStock
 
